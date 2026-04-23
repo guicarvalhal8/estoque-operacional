@@ -1,0 +1,189 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id              String          @id @default(cuid())
+  name            String
+  email           String          @unique
+  passwordHash    String
+  role            String
+  isActive        Boolean         @default(true)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  stockMovements  StockMovement[]
+  notes           Note[]
+  actionLogs      ActionLog[]
+  purchaseOrders  PurchaseOrder[]
+  stockCountsCreated StockCountSession[] @relation("StockCountsCreated")
+  stockCountsClosed  StockCountSession[] @relation("StockCountsClosed")
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  description String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  products    Product[]
+}
+
+model Product {
+  id                  String              @id @default(cuid())
+  name                String
+  categoryId          String
+  currentQuantity     Float
+  unit                String
+  minimumStock        Float
+  observations        String?
+  status              String
+  supplier            String?
+  estimatedCost       Float?
+  restockPriority     Int                 @default(2)
+  lastPhysicalCountAt DateTime?
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  category            Category            @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  stockMovements      StockMovement[]
+  alert               StockAlert?
+  notes               Note[]
+  purchaseOrderItems  PurchaseOrderItem[]
+  stockCountItems     StockCountItem[]
+
+  @@index([categoryId])
+  @@index([status])
+  @@unique([categoryId, name])
+}
+
+model StockMovement {
+  id             String       @id @default(cuid())
+  productId      String
+  userId         String
+  type           String
+  quantity       Float
+  delta          Float
+  quantityBefore Float
+  quantityAfter  Float
+  note           String?
+  occurredAt     DateTime     @default(now())
+  createdAt      DateTime     @default(now())
+  product        Product      @relation(fields: [productId], references: [id], onDelete: Restrict)
+  user           User         @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([productId, occurredAt])
+  @@index([userId, occurredAt])
+  @@index([type, occurredAt])
+}
+
+model StockAlert {
+  id              String     @id @default(cuid())
+  productId       String     @unique
+  level           String
+  message         String
+  isActive        Boolean    @default(true)
+  triggeredAt     DateTime   @default(now())
+  resolvedAt      DateTime?
+  updatedAt       DateTime   @updatedAt
+  product         Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Note {
+  id         String    @id @default(cuid())
+  productId  String
+  userId     String
+  type       String    @default("INTERNAL")
+  content    String
+  pinned     Boolean   @default(true)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  product    Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user       User      @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([productId, pinned])
+}
+
+model ActionLog {
+  id         String   @id @default(cuid())
+  userId     String?
+  action     String
+  entityType String
+  entityId   String
+  details    String?
+  createdAt  DateTime @default(now())
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([entityType, entityId])
+  @@index([createdAt])
+}
+
+model PurchaseOrder {
+  id          String                @id @default(cuid())
+  title       String
+  status      String                @default("PENDING")
+  notes       String?
+  createdById String
+  createdAt   DateTime              @default(now())
+  updatedAt   DateTime              @updatedAt
+  orderedAt   DateTime?
+  createdBy   User                  @relation(fields: [createdById], references: [id], onDelete: Restrict)
+  items       PurchaseOrderItem[]
+}
+
+model PurchaseOrderItem {
+  id                String         @id @default(cuid())
+  purchaseOrderId   String
+  productId         String
+  productName       String
+  unit              String
+  quantitySuggested Float
+  currentQuantity   Float
+  minimumStock      Float
+  priority          Int
+  createdAt         DateTime       @default(now())
+  purchaseOrder     PurchaseOrder  @relation(fields: [purchaseOrderId], references: [id], onDelete: Cascade)
+  product           Product        @relation(fields: [productId], references: [id], onDelete: Restrict)
+
+  @@index([purchaseOrderId])
+}
+
+model StockCountSession {
+  id          String           @id @default(cuid())
+  title       String
+  status      String           @default("OPEN")
+  referenceDate DateTime
+  notes       String?
+  startedAt   DateTime         @default(now())
+  closedAt    DateTime?
+  createdById String
+  closedById  String?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  createdBy   User             @relation("StockCountsCreated", fields: [createdById], references: [id], onDelete: Restrict)
+  closedBy    User?            @relation("StockCountsClosed", fields: [closedById], references: [id], onDelete: SetNull)
+  items       StockCountItem[]
+
+  @@index([status, referenceDate])
+}
+
+model StockCountItem {
+  id             String            @id @default(cuid())
+  sessionId      String
+  productId      String
+  systemQuantity Float
+  countedQuantity Float?
+  difference     Float?
+  note           String?
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  session        StockCountSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  product        Product           @relation(fields: [productId], references: [id], onDelete: Restrict)
+
+  @@unique([sessionId, productId])
+  @@index([sessionId])
+}

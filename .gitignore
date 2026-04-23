@@ -1,0 +1,10 @@
+node_modules
+.next
+out
+dist
+.turbo
+.env
+.env.local
+coverage
+backend/generated
+backend/prisma/dev.db

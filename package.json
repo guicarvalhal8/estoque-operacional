@@ -1,0 +1,19 @@
+{
+  "name": "acompanhamento-de-estoque",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "setup": "node scripts/setup-local.mjs",
+    "setup:env": "node scripts/setup-local.mjs --env-only",
+    "dev": "npm run dev --workspace backend",
+    "dev:frontend": "npm run dev --workspace frontend",
+    "dev:backend": "npm run dev --workspace backend",
+    "build": "npm run build --workspace backend && npm run build --workspace frontend",
+    "seed": "npm run seed --workspace backend",
+    "db:push": "npm run prisma:push --workspace backend",
+    "deploy:prepare": "npm run prisma:deploy --workspace backend && npm run seed --workspace backend"
+  }
+}
