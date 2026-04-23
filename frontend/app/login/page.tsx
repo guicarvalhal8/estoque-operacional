@@ -8,18 +8,11 @@ import { Button } from "../../components/ui/Button";
 import { Card } from "../../components/ui/Card";
 import { Input } from "../../components/ui/Input";
 
-const demoUsers = [
-  { label: "Administrador", email: "admin@estoque.local", password: "Admin@123" },
-  { label: "Gerente / Compras", email: "gerente@estoque.local", password: "Gerente@123" },
-  { label: "Operadora 1", email: "operadora1@estoque.local", password: "Operadora@123" },
-  { label: "Operadora 2", email: "operadora2@estoque.local", password: "Operadora@123" }
-];
-
 export default function LoginPage() {
   const router = useRouter();
   const { user, login, loading } = useAuth();
-  const [email, setEmail] = useState("admin@estoque.local");
-  const [password, setPassword] = useState("Admin@123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -120,44 +113,24 @@ export default function LoginPage() {
               </p>
             </div>
 
-            <Input value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Email" />
+            <Input
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder="Email"
+              autoComplete="username"
+            />
             <Input
               type="password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               placeholder="Senha"
+              autoComplete="current-password"
             />
             <Button type="submit" fullWidth disabled={submitting}>
               {submitting ? "Entrando..." : "Acessar painel"}
             </Button>
 
             {error ? <div style={{ color: "var(--danger)" }}>{error}</div> : null}
-
-            <div className="stack">
-              <span className="muted">Perfis de acesso iniciais</span>
-              {demoUsers.map((item) => (
-                <button
-                  key={item.email}
-                  type="button"
-                  onClick={() => {
-                    setEmail(item.email);
-                    setPassword(item.password);
-                  }}
-                  style={{
-                    textAlign: "left",
-                    padding: 14,
-                    borderRadius: 16,
-                    border: "1px solid var(--line)",
-                    background: "var(--surface-muted)",
-                    cursor: "pointer",
-                    color: "var(--text)"
-                  }}
-                >
-                  <strong>{item.label}</strong>
-                  <div className="muted">{item.email}</div>
-                </button>
-              ))}
-            </div>
 
             <div className="stack">
               <span className="muted">Acesso rapido no celular e no computador</span>

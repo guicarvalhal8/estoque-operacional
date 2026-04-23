@@ -17,7 +17,8 @@ async function main() {
   const passwordMap = {
     admin: await bcrypt.hash("Admin@123", 10),
     manager: await bcrypt.hash("Gerente@123", 10),
-    operator: await bcrypt.hash("Operadora@123", 10)
+    cris: await bcrypt.hash("Cris@123", 10),
+    glayci: await bcrypt.hash("Glayci@123", 10)
   };
 
   const users = [
@@ -34,18 +35,20 @@ async function main() {
       role: "MANAGER"
     },
     {
-      name: "Operadora de Estoque 1",
-      email: "operadora1@estoque.local",
-      passwordHash: passwordMap.operator,
+      name: "Cris",
+      email: "cris@estoque.local",
+      passwordHash: passwordMap.cris,
       role: "OPERATOR"
     },
     {
-      name: "Operadora de Estoque 2",
-      email: "operadora2@estoque.local",
-      passwordHash: passwordMap.operator,
+      name: "Glayci",
+      email: "glayci@estoque.local",
+      passwordHash: passwordMap.glayci,
       role: "OPERATOR"
     }
   ];
+
+  const legacyOperatorEmails = ["operadora1@estoque.local", "operadora2@estoque.local"];
 
   for (const user of users) {
     const existingUser = await prisma.user.findUnique({
@@ -63,6 +66,21 @@ async function main() {
         name: user.name,
         role: user.role,
         isActive: true
+      }
+    });
+  }
+
+  for (const email of legacyOperatorEmails) {
+    const legacyUser = await prisma.user.findUnique({
+      where: { email }
+    });
+
+    if (!legacyUser) continue;
+
+    await prisma.user.update({
+      where: { id: legacyUser.id },
+      data: {
+        isActive: false
       }
     });
   }
@@ -262,7 +280,7 @@ async function main() {
   ];
 
   const operator = await prisma.user.findUniqueOrThrow({
-    where: { email: "operadora1@estoque.local" }
+    where: { email: "cris@estoque.local" }
   });
 
   for (const product of initialProducts) {
