@@ -7,12 +7,14 @@ import { Modal } from "../ui/Modal";
 
 export function InstallAppButton({
   variant = "secondary",
-  fullWidth = false
+  fullWidth = false,
+  label = "Instalar app"
 }: {
   variant?: "primary" | "secondary" | "ghost" | "danger";
   fullWidth?: boolean;
+  label?: string;
 }) {
-  const { canInstall, installApp, isInstalled } = usePwa();
+  const { canInstall, installApp, isAppleMobile, isInstalled } = usePwa();
   const [instructionsOpen, setInstructionsOpen] = useState(false);
 
   const handleClick = async () => {
@@ -29,7 +31,7 @@ export function InstallAppButton({
   return (
     <>
       <Button variant={variant} fullWidth={fullWidth} onClick={() => void handleClick()} disabled={isInstalled}>
-        {isInstalled ? "App instalado" : "Instalar app"}
+        {isInstalled ? "App instalado" : label}
       </Button>
 
       <Modal open={instructionsOpen} title="Como instalar o app" onClose={() => setInstructionsOpen(false)}>
@@ -60,7 +62,9 @@ export function InstallAppButton({
           >
             <strong>No celular</strong>
             <div className="muted" style={{ marginTop: 6 }}>
-              Use "Adicionar a tela inicial" no menu do navegador para abrir como aplicativo.
+              {isAppleMobile
+                ? 'No Safari, toque em "Compartilhar" e depois em "Adicionar a Tela de Inicio".'
+                : 'No Chrome, toque no menu do navegador e escolha "Instalar app" ou "Adicionar a tela inicial".'}
             </div>
           </div>
         </div>

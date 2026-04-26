@@ -90,7 +90,8 @@ body::before {
 }
 
 .app-sidebar-backdrop,
-.mobile-nav-bar {
+.mobile-nav-bar,
+.mobile-bottom-nav {
   display: none;
 }
 
@@ -238,6 +239,18 @@ body::before {
     z-index: 40;
   }
 
+  .mobile-bottom-nav {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    padding: 12px 14px calc(12px + env(safe-area-inset-bottom));
+    position: fixed;
+    left: var(--shell-pad);
+    right: var(--shell-pad);
+    bottom: var(--shell-pad);
+    z-index: 40;
+  }
+
   .mobile-nav-bar button {
     border: 1px solid var(--line);
     background: var(--surface-strong);
@@ -285,6 +298,10 @@ body::before {
   .reports-split-grid {
     grid-template-columns: 1fr;
   }
+
+  .page-shell {
+    padding-bottom: calc(92px + env(safe-area-inset-bottom));
+  }
 }
 
 @media (max-width: 760px) {
@@ -306,6 +323,12 @@ body::before {
 
   .panel {
     border-radius: var(--radius);
+  }
+
+  .mobile-bottom-nav {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
   }
 
   .table-wrap {

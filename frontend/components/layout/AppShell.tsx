@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { InstallAppBanner } from "../pwa/InstallAppBanner";
 import { InstallAppButton } from "../pwa/InstallAppButton";
 import { Button } from "../ui/Button";
 import { useAuth } from "../../lib/auth-context";
@@ -17,6 +18,15 @@ const navigationItems: Array<{ href: string; label: string; roles: Role[] }> = [
   { href: "/reports", label: "Relatorios", roles: ["ADMIN", "MANAGER"] },
   { href: "/replenishment", label: "Reposicao", roles: ["ADMIN", "MANAGER"] }
 ];
+
+const mobileNavigationLabels: Record<string, string> = {
+  "/dashboard": "Inicio",
+  "/products": "Estoque",
+  "/counts": "Contagem",
+  "/movements": "Historico",
+  "/reports": "Relatorios",
+  "/replenishment": "Compras"
+};
 
 export function AppShell({
   title,
@@ -162,6 +172,7 @@ export function AppShell({
         </aside>
 
         <main className="page-grid">
+          <InstallAppBanner />
           <header
             className="panel"
             style={{
@@ -193,6 +204,37 @@ export function AppShell({
           {children}
         </main>
       </div>
+
+      <nav className="panel mobile-bottom-nav">
+        {visibleNavigationItems.slice(0, 4).map((item) => {
+          const active = pathname === item.href;
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              style={{
+                display: "grid",
+                gap: 4,
+                justifyItems: "center",
+                textAlign: "center",
+                color: active ? "var(--primary-strong)" : "var(--text-soft)",
+                fontWeight: active ? 700 : 600,
+                fontSize: 12
+              }}
+            >
+              <span
+                style={{
+                  width: 9,
+                  height: 9,
+                  borderRadius: 999,
+                  background: active ? "var(--primary)" : "var(--line)"
+                }}
+              />
+              <span>{mobileNavigationLabels[item.href] ?? item.label}</span>
+            </Link>
+          );
+        })}
+      </nav>
     </div>
   );
 }

@@ -26,6 +26,9 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: "default",
     title: "Estoque Operacional"
+  },
+  formatDetection: {
+    telephone: false
   }
 };
 

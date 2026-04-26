@@ -10,6 +10,8 @@ type BeforeInstallPromptEvent = Event & {
 type PwaContextValue = {
   canInstall: boolean;
   isInstalled: boolean;
+  isMobileDevice: boolean;
+  isAppleMobile: boolean;
   installApp: () => Promise<boolean>;
 };
 
@@ -28,9 +30,14 @@ function isStandaloneMode() {
 export function PwaProvider({ children }: { children: React.ReactNode }) {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [isInstalled, setIsInstalled] = useState(false);
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
+  const [isAppleMobile, setIsAppleMobile] = useState(false);
 
   useEffect(() => {
     setIsInstalled(isStandaloneMode());
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    setIsMobileDevice(window.matchMedia("(max-width: 1080px)").matches || /android|iphone|ipad|ipod/.test(userAgent));
+    setIsAppleMobile(/iphone|ipad|ipod/.test(userAgent));
 
     const handleBeforeInstallPrompt = (event: Event) => {
       event.preventDefault();
@@ -59,6 +66,8 @@ export function PwaProvider({ children }: { children: React.ReactNode }) {
     () => ({
       canInstall: Boolean(deferredPrompt) && !isInstalled,
       isInstalled,
+      isMobileDevice,
+      isAppleMobile,
       installApp: async () => {
         if (!deferredPrompt) return false;
 
@@ -74,7 +83,7 @@ export function PwaProvider({ children }: { children: React.ReactNode }) {
         return accepted;
       }
     }),
-    [deferredPrompt, isInstalled]
+    [deferredPrompt, isInstalled, isMobileDevice, isAppleMobile]
   );
 
   return <PwaContext.Provider value={value}>{children}</PwaContext.Provider>;
