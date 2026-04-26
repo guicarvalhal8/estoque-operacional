@@ -304,7 +304,7 @@ export function CountsView() {
         </Card>
       )}
 
-      <div className="section-grid" style={{ gridTemplateColumns: "0.95fr 1.05fr" }}>
+      <div className="counts-split-grid">
         <Card>
           <div className="stack">
             <div>
@@ -399,7 +399,7 @@ export function CountsView() {
                   />
                 </div>
 
-                <div className="section-grid" style={{ gridTemplateColumns: "1fr 1fr" }}>
+                <div className="equal-split-grid">
                   <div className="stack">
                     <strong>Produtos que mais sairam</strong>
                     {(overview.latestAnalysis.topOutflows ?? []).map((item) => (

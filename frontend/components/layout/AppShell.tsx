@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { InstallAppButton } from "../pwa/InstallAppButton";
 import { Button } from "../ui/Button";
 import { useAuth } from "../../lib/auth-context";
@@ -31,27 +32,51 @@ export function AppShell({
   const pathname = usePathname();
   const { user, logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const visibleNavigationItems = navigationItems.filter((item) =>
     user ? item.roles.includes(user.role) : false
   );
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
 
   return (
     <div
       className="page-shell"
       style={{
         minHeight: "100vh",
-        padding: 22
+        padding: "var(--shell-pad)"
       }}
     >
+      <div className="panel mobile-nav-bar">
+        <div>
+          <div
+            style={{
+              color: "var(--primary)",
+              fontWeight: 700,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              fontSize: 11
+            }}
+          >
+            Estoque Operacional
+          </div>
+          <div style={{ fontWeight: 700 }}>{title}</div>
+        </div>
+        <button type="button" onClick={() => setMobileMenuOpen((current) => !current)}>
+          {mobileMenuOpen ? "Fechar" : "Menu"}
+        </button>
+      </div>
+
       <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "280px minmax(0, 1fr)",
-          gap: 20
-        }}
-      >
+        className={`app-sidebar-backdrop${mobileMenuOpen ? " is-open" : ""}`}
+        onClick={() => setMobileMenuOpen(false)}
+      />
+
+      <div className="app-shell-grid">
         <aside
-          className="panel"
+          className={`panel app-sidebar${mobileMenuOpen ? " is-open" : ""}`}
           style={{
             padding: 22,
             display: "grid",
@@ -96,6 +121,7 @@ export function AppShell({
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
                   style={{
                     padding: "14px 16px",
                     borderRadius: 18,
@@ -152,7 +178,7 @@ export function AppShell({
                 style={{
                   margin: 0,
                   fontFamily: "var(--font-heading)",
-                  fontSize: "2rem"
+                  fontSize: "clamp(1.6rem, 4vw, 2rem)"
                 }}
               >
                 {title}
@@ -167,18 +193,6 @@ export function AppShell({
           {children}
         </main>
       </div>
-
-      <style jsx>{`
-        @media (max-width: 1080px) {
-          div[style*="grid-template-columns: 280px"] {
-            grid-template-columns: 1fr;
-          }
-
-          aside {
-            position: static !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }

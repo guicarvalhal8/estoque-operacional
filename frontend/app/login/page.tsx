@@ -41,20 +41,13 @@ export default function LoginPage() {
         minHeight: "100vh",
         display: "grid",
         placeItems: "center",
-        padding: 24
+        padding: "var(--shell-pad)"
       }}
     >
-      <div
-        style={{
-          width: "min(1100px, 100%)",
-          display: "grid",
-          gridTemplateColumns: "1.1fr 0.9fr",
-          gap: 24
-        }}
-      >
+      <div className="login-hero-grid">
         <Card
           style={{
-            padding: 36,
+            padding: "clamp(24px, 4vw, 36px)",
             background:
               "linear-gradient(145deg, rgba(31, 122, 82, 0.94), rgba(22, 74, 50, 0.95))",
             color: "#fff"
@@ -68,7 +61,7 @@ export default function LoginPage() {
               style={{
                 margin: 0,
                 fontFamily: "var(--font-heading)",
-                fontSize: "3rem",
+                fontSize: "clamp(2.2rem, 7vw, 3rem)",
                 lineHeight: 1
               }}
             >
@@ -104,7 +97,7 @@ export default function LoginPage() {
           </div>
         </Card>
 
-        <Card style={{ padding: 32 }}>
+        <Card style={{ padding: "clamp(22px, 4vw, 32px)" }}>
           <form className="stack" onSubmit={handleSubmit}>
             <div>
               <h2 style={{ margin: 0, fontFamily: "var(--font-heading)" }}>Entrar no sistema</h2>

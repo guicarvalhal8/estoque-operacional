@@ -161,7 +161,7 @@ export function ReportsView() {
         </Card>
       ) : null}
 
-      <div className="section-grid" style={{ gridTemplateColumns: "1fr 1fr" }}>
+      <div className="reports-split-grid">
         <Card>
           <div className="stack">
             <h3 style={{ margin: 0 }}>Produtos com maior saida</h3>
@@ -261,7 +261,7 @@ export function ReportsView() {
         </div>
       </Card>
 
-      <div className="section-grid" style={{ gridTemplateColumns: "1fr 1fr" }}>
+      <div className="reports-split-grid">
         <Card>
           <div className="stack">
             <h3 style={{ margin: 0 }}>Movimentacoes do dia</h3>
@@ -319,4 +319,3 @@ export function ReportsView() {
     </div>
   );
 }
-

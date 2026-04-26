@@ -268,13 +268,7 @@ export function ProductsView() {
         </div>
       </Card>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-          gap: 18
-        }}
-      >
+      <div className="products-grid">
         {products.map((product) => (
           <Card key={product.id}>
             <div className="stack">
@@ -293,7 +287,7 @@ export function ProductsView() {
                 <StatusBadge status={product.status} />
               </div>
 
-              <div className="section-grid" style={{ gridTemplateColumns: "repeat(2, 1fr)" }}>
+              <div className="product-meta-grid">
                 <div>
                   <div className="muted">Atual</div>
                   <strong>
@@ -338,13 +332,7 @@ export function ProductsView() {
                 ))}
               </div>
 
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-                  gap: 10
-                }}
-              >
+              <div className="product-actions-grid">
                 <Button variant="danger" onClick={() => setQuickActionTarget(product)}>
                   -1 unidade
                 </Button>

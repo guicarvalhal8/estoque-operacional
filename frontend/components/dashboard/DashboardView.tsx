@@ -92,7 +92,7 @@ export function DashboardView() {
         />
       </div>
 
-      <div className="section-grid" style={{ gridTemplateColumns: "1.2fr 0.8fr" }}>
+      <div className="dashboard-split-grid">
         <Card>
           <div className="stack">
             <div>
@@ -226,4 +226,3 @@ export function DashboardView() {
     </div>
   );
 }
-
