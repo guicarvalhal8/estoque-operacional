@@ -94,6 +94,33 @@ export default function LoginPage() {
 
         <Card className="login-form-card" style={{ padding: "clamp(22px, 4vw, 32px)" }}>
           <form className="stack" onSubmit={handleSubmit}>
+            <div className="login-mobile-only">
+              <span
+                style={{
+                  color: "var(--primary)",
+                  fontWeight: 700,
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  fontSize: 11
+                }}
+              >
+                Estoque operacional
+              </span>
+              <h1
+                style={{
+                  margin: 0,
+                  fontFamily: "var(--font-heading)",
+                  fontSize: "1.8rem",
+                  lineHeight: 1.05
+                }}
+              >
+                Entre rapido e continue o trabalho
+              </h1>
+              <p className="muted" style={{ margin: 0 }}>
+                Baixa, entrada e consulta de estoque em poucos toques.
+              </p>
+            </div>
+
             <div>
               <h2 style={{ margin: 0, fontFamily: "var(--font-heading)" }}>Entrar no sistema</h2>
               <p className="muted" style={{ margin: "8px 0 0" }}>

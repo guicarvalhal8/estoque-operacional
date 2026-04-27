@@ -46,6 +46,8 @@ html,
 body {
   margin: 0;
   min-height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top left, rgba(74, 143, 96, 0.14), transparent 26%),
     radial-gradient(circle at top right, rgba(196, 145, 63, 0.16), transparent 20%),
@@ -207,6 +209,10 @@ body::before {
 
 .mobile-card-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.login-mobile-only {
+  display: none;
 }
 
 .products-grid {
@@ -390,10 +396,11 @@ body::before {
 
   .login-form-card {
     width: 100%;
+    padding: 18px !important;
   }
 
   .login-hero-card {
-    padding: 18px !important;
+    display: none;
   }
 
   .login-hero-title {
@@ -408,6 +415,12 @@ body::before {
 
   .login-hero-card .section-grid {
     display: none;
+  }
+
+  .login-mobile-only {
+    display: grid;
+    gap: 8px;
+    padding: 0 0 4px;
   }
 
   .responsive-table {
