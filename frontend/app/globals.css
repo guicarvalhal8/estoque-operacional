@@ -235,6 +235,21 @@ body::before {
   .data-table td {
     padding: 12px;
   }
+
+  .login-form-card {
+    width: 100%;
+    padding: 20px !important;
+  }
+
+  .login-hero-card {
+    display: none;
+  }
+
+  .login-mobile-only {
+    display: grid;
+    gap: 8px;
+    padding: 0 0 4px;
+  }
 }
 
 @media (max-width: 1080px) {
@@ -394,15 +409,6 @@ body::before {
     gap: 14px;
   }
 
-  .login-form-card {
-    width: 100%;
-    padding: 18px !important;
-  }
-
-  .login-hero-card {
-    display: none;
-  }
-
   .login-hero-title {
     font-size: 2rem !important;
     line-height: 1.02 !important;
@@ -411,16 +417,6 @@ body::before {
   .login-hero-text {
     font-size: 0.96rem;
     line-height: 1.45;
-  }
-
-  .login-hero-card .section-grid {
-    display: none;
-  }
-
-  .login-mobile-only {
-    display: grid;
-    gap: 8px;
-    padding: 0 0 4px;
   }
 
   .responsive-table {
