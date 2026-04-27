@@ -36,14 +36,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "grid",
-        placeItems: "center",
-        padding: "var(--shell-pad)"
-      }}
-    >
+    <div className="login-page">
       <div className="login-hero-grid">
         <Card
           className="login-hero-card"
@@ -59,6 +52,7 @@ export default function LoginPage() {
               Operacao de alimentos
             </span>
             <h1
+              className="login-hero-title"
               style={{
                 margin: 0,
                 fontFamily: "var(--font-heading)",
@@ -68,7 +62,7 @@ export default function LoginPage() {
             >
               Estoque claro, historico confiavel e baixa rapida no dia a dia.
             </h1>
-            <p style={{ maxWidth: 560, opacity: 0.9 }}>
+            <p className="login-hero-text" style={{ maxWidth: 560, opacity: 0.9 }}>
               Aplicacao preparada para equipe interna com alertas, relatorios, reposicao automatica
               e fluxo agil para entrada, saida, perda e ajuste.
             </p>

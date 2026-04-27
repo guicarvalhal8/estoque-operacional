@@ -83,6 +83,13 @@ body::before {
   z-index: 1;
 }
 
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: var(--shell-pad);
+}
+
 .app-shell-grid {
   display: grid;
   grid-template-columns: 280px minmax(0, 1fr);
@@ -331,6 +338,13 @@ body::before {
     border-radius: var(--radius);
   }
 
+  .login-page {
+    place-items: start;
+    align-content: start;
+    padding-top: 18px;
+    padding-bottom: 24px;
+  }
+
   .mobile-bottom-nav {
     left: 10px;
     right: 10px;
@@ -368,6 +382,28 @@ body::before {
 
   .section-grid {
     grid-template-columns: 1fr;
+  }
+
+  .login-hero-grid {
+    gap: 14px;
+  }
+
+  .login-form-card {
+    width: 100%;
+  }
+
+  .login-hero-card {
+    padding: 18px !important;
+  }
+
+  .login-hero-title {
+    font-size: 2rem !important;
+    line-height: 1.02 !important;
+  }
+
+  .login-hero-text {
+    font-size: 0.96rem;
+    line-height: 1.45;
   }
 
   .login-hero-card .section-grid {
