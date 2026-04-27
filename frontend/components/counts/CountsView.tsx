@@ -229,7 +229,7 @@ export function CountsView() {
             </div>
 
             <div className="table-wrap">
-              <table className="data-table">
+              <table className="data-table responsive-table">
                 <thead>
                   <tr>
                     <th>Categoria</th>
@@ -254,12 +254,12 @@ export function CountsView() {
 
                     return (
                       <tr key={item.id}>
-                        <td>{item.categoryName}</td>
-                        <td>{item.productName}</td>
-                        <td>
+                        <td data-label="Categoria">{item.categoryName}</td>
+                        <td data-label="Produto">{item.productName}</td>
+                        <td data-label="Sistema">
                           {formatNumber(item.systemQuantity)} {item.unit}
                         </td>
-                        <td>
+                        <td data-label="Contado">
                           <Input
                             type="number"
                             step="0.001"
@@ -275,10 +275,10 @@ export function CountsView() {
                             }
                           />
                         </td>
-                        <td>
+                        <td data-label="Diferenca">
                           {difference === null ? "-" : `${difference > 0 ? "+" : ""}${formatNumber(difference)}`}
                         </td>
-                        <td>
+                        <td data-label="Observacao">
                           <Input
                             placeholder="Obs. da contagem"
                             value={draft.note}

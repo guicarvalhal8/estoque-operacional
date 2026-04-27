@@ -122,7 +122,7 @@ export function MovementsView() {
             </p>
           </div>
           <div className="table-wrap">
-            <table className="data-table">
+            <table className="data-table responsive-table">
               <thead>
                 <tr>
                   <th>Data e hora</th>
@@ -138,16 +138,16 @@ export function MovementsView() {
               <tbody>
                 {movements.map((movement) => (
                   <tr key={movement.id}>
-                    <td>{formatDateTime(movement.occurredAt)}</td>
-                    <td>{movement.product.name}</td>
-                    <td>{movementLabel(movement.type)}</td>
-                    <td>
+                    <td data-label="Data e hora">{formatDateTime(movement.occurredAt)}</td>
+                    <td data-label="Produto">{movement.product.name}</td>
+                    <td data-label="Tipo">{movementLabel(movement.type)}</td>
+                    <td data-label="Quantidade">
                       {formatNumber(movement.quantity)} {movement.product.unit}
                     </td>
-                    <td>{formatNumber(movement.quantityBefore)}</td>
-                    <td>{formatNumber(movement.quantityAfter)}</td>
-                    <td>{movement.user.name}</td>
-                    <td>{movement.note || "-"}</td>
+                    <td data-label="Antes">{formatNumber(movement.quantityBefore)}</td>
+                    <td data-label="Depois">{formatNumber(movement.quantityAfter)}</td>
+                    <td data-label="Usuario">{movement.user.name}</td>
+                    <td data-label="Observacao">{movement.note || "-"}</td>
                   </tr>
                 ))}
               </tbody>
@@ -161,4 +161,3 @@ export function MovementsView() {
     </div>
   );
 }
-

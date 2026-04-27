@@ -229,7 +229,7 @@ export function ReportsView() {
         <div className="stack">
           <h3 style={{ margin: 0 }}>Estoque atual</h3>
           <div className="table-wrap">
-            <table className="data-table">
+            <table className="data-table responsive-table">
               <thead>
                 <tr>
                   <th>Produto</th>
@@ -244,15 +244,15 @@ export function ReportsView() {
               <tbody>
                 {report.currentStock.map((item) => (
                   <tr key={item.product}>
-                    <td>{item.product}</td>
-                    <td>{item.category}</td>
-                    <td>
+                    <td data-label="Produto">{item.product}</td>
+                    <td data-label="Categoria">{item.category}</td>
+                    <td data-label="Atual">
                       {formatNumber(item.quantity)} {item.unit}
                     </td>
-                    <td>{formatNumber(item.minimumStock)}</td>
-                    <td>{statusLabel(item.status)}</td>
-                    <td>{item.supplier || "-"}</td>
-                    <td>{formatCurrency(item.estimatedCost)}</td>
+                    <td data-label="Minimo">{formatNumber(item.minimumStock)}</td>
+                    <td data-label="Status">{statusLabel(item.status)}</td>
+                    <td data-label="Fornecedor">{item.supplier || "-"}</td>
+                    <td data-label="Custo">{formatCurrency(item.estimatedCost)}</td>
                   </tr>
                 ))}
               </tbody>

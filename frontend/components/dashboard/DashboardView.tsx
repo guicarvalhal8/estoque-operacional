@@ -186,7 +186,7 @@ export function DashboardView() {
           </div>
 
           <div className="table-wrap">
-            <table className="data-table">
+            <table className="data-table responsive-table">
               <thead>
                 <tr>
                   <th>Produto</th>
@@ -200,20 +200,20 @@ export function DashboardView() {
               <tbody>
                 {overview.catalog.map((product) => (
                   <tr key={product.id}>
-                    <td>
+                    <td data-label="Produto">
                       <strong>{product.name}</strong>
                     </td>
-                    <td>{product.category.name}</td>
-                    <td>
+                    <td data-label="Categoria">{product.category.name}</td>
+                    <td data-label="Atual">
                       {formatNumber(product.currentQuantity)} {product.unit}
                     </td>
-                    <td>
+                    <td data-label="Minimo">
                       {formatNumber(product.minimumStock)} {product.unit}
                     </td>
-                    <td>
+                    <td data-label="Status">
                       <StatusBadge status={product.status} />
                     </td>
-                    <td>{product.notes[0]?.content || product.observations || "-"}</td>
+                    <td data-label="Observacoes">{product.notes[0]?.content || product.observations || "-"}</td>
                   </tr>
                 ))}
               </tbody>

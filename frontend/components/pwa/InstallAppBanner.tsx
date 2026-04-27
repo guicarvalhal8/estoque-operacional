@@ -20,9 +20,37 @@ export function InstallAppBanner() {
       }}
     >
       <div>
-        <div style={{ fontWeight: 700 }}>Use como aplicativo no celular</div>
+        <div style={{ fontWeight: 700 }}>Instale no celular</div>
         <div className="muted" style={{ marginTop: 4 }}>
-          Instale o sistema para abrir pelo icone da tela inicial, sem precisar entrar no navegador toda vez.
+          Abra pelo icone da tela inicial, como um app normal.
+        </div>
+      </div>
+      <div className="mobile-card-grid">
+        <div
+          style={{
+            padding: 12,
+            borderRadius: 16,
+            background: "var(--surface-muted)",
+            border: "1px solid var(--line)"
+          }}
+        >
+          <strong>1. Toque em instalar</strong>
+          <div className="muted" style={{ marginTop: 4 }}>
+            Se o navegador permitir, o app instala na hora.
+          </div>
+        </div>
+        <div
+          style={{
+            padding: 12,
+            borderRadius: 16,
+            background: "var(--surface-muted)",
+            border: "1px solid var(--line)"
+          }}
+        >
+          <strong>2. Abra pelo icone</strong>
+          <div className="muted" style={{ marginTop: 4 }}>
+            Depois disso, nao precisa entrar no Safari ou Chrome toda vez.
+          </div>
         </div>
       </div>
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>

@@ -46,6 +46,7 @@ export default function LoginPage() {
     >
       <div className="login-hero-grid">
         <Card
+          className="login-hero-card"
           style={{
             padding: "clamp(24px, 4vw, 36px)",
             background:
@@ -97,12 +98,12 @@ export default function LoginPage() {
           </div>
         </Card>
 
-        <Card style={{ padding: "clamp(22px, 4vw, 32px)" }}>
+        <Card className="login-form-card" style={{ padding: "clamp(22px, 4vw, 32px)" }}>
           <form className="stack" onSubmit={handleSubmit}>
             <div>
               <h2 style={{ margin: 0, fontFamily: "var(--font-heading)" }}>Entrar no sistema</h2>
               <p className="muted" style={{ margin: "8px 0 0" }}>
-                Autenticacao simples e segura para equipe operacional.
+                Entre com seu email e senha para usar o estoque.
               </p>
             </div>
 
@@ -125,8 +126,18 @@ export default function LoginPage() {
 
             {error ? <div style={{ color: "var(--danger)" }}>{error}</div> : null}
 
-            <div className="stack">
-              <span className="muted">Acesso rapido no celular e no computador</span>
+            <div
+              style={{
+                padding: 14,
+                borderRadius: 18,
+                background: "var(--surface-muted)",
+                border: "1px solid var(--line)"
+              }}
+            >
+              <div style={{ fontWeight: 700 }}>Quer usar como app?</div>
+              <div className="muted" style={{ margin: "4px 0 10px" }}>
+                Instale no celular e abra pelo icone, como um aplicativo normal.
+              </div>
               <InstallAppButton fullWidth />
             </div>
           </form>

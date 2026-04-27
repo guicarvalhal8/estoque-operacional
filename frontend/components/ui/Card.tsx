@@ -2,14 +2,16 @@ import type { CSSProperties } from "react";
 
 export function Card({
   children,
-  style
+  style,
+  className
 }: {
   children: React.ReactNode;
   style?: CSSProperties;
+  className?: string;
 }) {
   return (
     <div
-      className="panel"
+      className={className ? `panel ${className}` : "panel"}
       style={{
         padding: 22,
         ...style
@@ -19,4 +21,3 @@ export function Card({
     </div>
   );
 }
-

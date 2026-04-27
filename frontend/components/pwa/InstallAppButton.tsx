@@ -37,7 +37,7 @@ export function InstallAppButton({
       <Modal open={instructionsOpen} title="Como instalar o app" onClose={() => setInstructionsOpen(false)}>
         <div className="stack">
           <p className="muted" style={{ margin: 0 }}>
-            Se o navegador nao mostrar a instalacao automaticamente, voce ainda pode instalar por ele.
+            Se a instalacao nao aparecer sozinha, siga o caminho rapido abaixo.
           </p>
           <div
             style={{
@@ -49,7 +49,7 @@ export function InstallAppButton({
           >
             <strong>No computador</strong>
             <div className="muted" style={{ marginTop: 6 }}>
-              Abra o menu do navegador e procure por "Instalar aplicativo", "Instalar app" ou algo parecido.
+              Abra o menu do navegador e toque em "Instalar aplicativo" ou "Instalar app".
             </div>
           </div>
           <div
@@ -63,8 +63,8 @@ export function InstallAppButton({
             <strong>No celular</strong>
             <div className="muted" style={{ marginTop: 6 }}>
               {isAppleMobile
-                ? 'No Safari, toque em "Compartilhar" e depois em "Adicionar a Tela de Inicio".'
-                : 'No Chrome, toque no menu do navegador e escolha "Instalar app" ou "Adicionar a tela inicial".'}
+                ? 'No Safari, toque em "Compartilhar" e depois em "Adicionar a Tela de Inicio". Depois use so o icone.'
+                : 'No Chrome, toque no menu e escolha "Instalar app" ou "Adicionar a tela inicial". Depois use so o icone.'}
             </div>
           </div>
         </div>
