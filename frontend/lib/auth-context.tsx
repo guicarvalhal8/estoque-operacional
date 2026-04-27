@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { api } from "./api";
+import { api, persistAuthToken } from "./api";
 import type { User } from "./types";
 
 type AuthContextValue = {
@@ -25,6 +25,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const response = await api<{ user: User }>("/auth/me");
       setUser(response.user);
     } catch {
+      persistAuthToken(null);
       setUser(null);
     } finally {
       setLoading(false);
@@ -39,15 +40,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     user,
     loading,
     login: async ({ email, password }) => {
-      const response = await api<{ user: User }>("/auth/login", {
+      const response = await api<{ user: User; token: string }>("/auth/login", {
         method: "POST",
         body: JSON.stringify({ email, password })
       });
+      persistAuthToken(response.token);
       setUser(response.user);
       router.push("/dashboard");
     },
     logout: async () => {
       await api("/auth/logout", { method: "POST" });
+      persistAuthToken(null);
       setUser(null);
       router.push("/login");
     },

@@ -17,7 +17,10 @@ export function signToken(payload: TokenPayload) {
 }
 
 export function requireAuth(request: Request, _response: Response, next: NextFunction) {
-  const token = request.cookies?.auth_token;
+  const authHeader = request.headers.authorization;
+  const bearerToken =
+    authHeader && authHeader.startsWith("Bearer ") ? authHeader.slice("Bearer ".length) : null;
+  const token = request.cookies?.auth_token ?? bearerToken;
 
   if (!token) {
     return next(createHttpError(401, "Sessao nao autenticada"));

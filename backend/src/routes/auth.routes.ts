@@ -29,7 +29,7 @@ authRouter.post("/login", validate(loginSchema), async (request, response, next)
 
     response.cookie("auth_token", token, buildCookieOptions());
 
-    response.json({ user });
+    response.json({ user, token });
   } catch (error) {
     next(error);
   }

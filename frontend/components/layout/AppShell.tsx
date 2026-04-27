@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { InstallAppBanner } from "../pwa/InstallAppBanner";
 import { InstallAppButton } from "../pwa/InstallAppButton";
 import { Button } from "../ui/Button";
 import { useAuth } from "../../lib/auth-context";
@@ -172,7 +171,6 @@ export function AppShell({
         </aside>
 
         <main className="page-grid">
-          <InstallAppBanner />
           <header
             className="panel"
             style={{
