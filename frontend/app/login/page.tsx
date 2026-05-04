@@ -49,7 +49,7 @@ export default function LoginPage() {
         >
           <div className="stack">
             <span style={{ opacity: 0.9, textTransform: "uppercase", letterSpacing: "0.1em" }}>
-              Operacao de alimentos
+              Operação de alimentos
             </span>
             <h1
               className="login-hero-title"
@@ -60,11 +60,11 @@ export default function LoginPage() {
                 lineHeight: 1
               }}
             >
-              Estoque claro, historico confiavel e baixa rapida no dia a dia.
+              Estoque claro, histórico confiável e baixa rápida no dia a dia.
             </h1>
             <p className="login-hero-text" style={{ maxWidth: 560, opacity: 0.9 }}>
-              Aplicacao preparada para equipe interna com alertas, relatorios, reposicao automatica
-              e fluxo agil para entrada, saida, perda e ajuste.
+              Aplicação preparada para equipe interna com alertas, relatórios, reposição automática
+              e fluxo ágil para entrada, saída, perda e ajuste.
             </p>
 
             <div className="section-grid">
@@ -76,7 +76,7 @@ export default function LoginPage() {
                 }}
               >
                 <strong>Dashboard operacional</strong>
-                <div style={{ opacity: 0.88 }}>Visao imediata de risco, saidas e estoque atual.</div>
+                <div style={{ opacity: 0.88 }}>Visão imediata de risco, saídas e estoque atual.</div>
               </div>
               <div
                 style={{
@@ -85,8 +85,8 @@ export default function LoginPage() {
                   background: "rgba(255, 255, 255, 0.12)"
                 }}
               >
-                <strong>Historico imutavel</strong>
-                <div style={{ opacity: 0.88 }}>Toda alteracao fica registrada com usuario e observacao.</div>
+                <strong>Histórico imutável</strong>
+                <div style={{ opacity: 0.88 }}>Toda alteração fica registrada com usuário e observação.</div>
               </div>
             </div>
           </div>
@@ -114,7 +114,7 @@ export default function LoginPage() {
                   lineHeight: 1.05
                 }}
               >
-                Entre rapido e continue o trabalho
+                Entre rápido e continue o trabalho
               </h1>
               <p className="muted" style={{ margin: 0 }}>
                 Baixa, entrada e consulta de estoque em poucos toques.
@@ -157,7 +157,7 @@ export default function LoginPage() {
             >
               <div style={{ fontWeight: 700 }}>Quer usar como app?</div>
               <div className="muted" style={{ margin: "4px 0 10px" }}>
-                Instale no celular e abra pelo icone, como um aplicativo normal.
+                Instale no celular e abra pelo ícone, como um aplicativo normal.
               </div>
               <InstallAppButton fullWidth />
             </div>

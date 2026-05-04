@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Estoque Operacional",
     short_name: "Estoque",
-    description: "Controle profissional de estoque para operacao de alimentos.",
+    description: "Controle profissional de estoque para operação de alimentos.",
     start_url: "/",
     scope: "/",
     display: "standalone",

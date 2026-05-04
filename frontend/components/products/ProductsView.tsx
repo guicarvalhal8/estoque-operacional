@@ -211,7 +211,7 @@ export function ProductsView() {
       await load();
     } catch (submitError) {
       setError(
-        submitError instanceof Error ? submitError.message : "Falha ao adicionar observacao"
+        submitError instanceof Error ? submitError.message : "Falha ao adicionar observação"
       );
     }
   };
@@ -225,14 +225,14 @@ export function ProductsView() {
           productId: quickActionTarget.id,
           type: "EXIT",
           quantity: 1,
-          note: `Saida rapida de 1 unidade de ${quickActionTarget.name}`
+          note: `Saída rápida de 1 unidade de ${quickActionTarget.name}`
         })
       });
       setQuickActionTarget(null);
       await load();
     } catch (submitError) {
       setError(
-        submitError instanceof Error ? submitError.message : "Falha na baixa rapida"
+        submitError instanceof Error ? submitError.message : "Falha na baixa rápida"
       );
     }
   };
@@ -261,7 +261,7 @@ export function ProductsView() {
             <option value="">Todos os status</option>
             <option value="NORMAL">Normal</option>
             <option value="LOW">Baixo</option>
-            <option value="CRITICAL">Critico</option>
+            <option value="CRITICAL">Crítico</option>
             <option value="ZEROED">Zerado</option>
           </Select>
           {canEditProducts ? <Button onClick={openCreateProduct}>Novo produto</Button> : <div />}
@@ -295,7 +295,7 @@ export function ProductsView() {
                   </strong>
                 </div>
                 <div>
-                  <div className="muted">Minimo</div>
+                  <div className="muted">Mínimo</div>
                   <strong>
                     {formatNumber(product.minimumStock)} {product.unit}
                   </strong>
@@ -311,10 +311,10 @@ export function ProductsView() {
               </div>
 
               <div className="muted">
-                Ultima contagem fisica: {formatDateTime(product.lastPhysicalCountAt)}
+                Última contagem física: {formatDateTime(product.lastPhysicalCountAt)}
               </div>
 
-              <div>{product.observations || "Sem observacao fixa cadastrada."}</div>
+              <div>{product.observations || "Sem observação fixa cadastrada."}</div>
 
               <div className="stack">
                 {product.notes.slice(0, 3).map((note) => (
@@ -341,11 +341,11 @@ export function ProductsView() {
                   onClick={() =>
                     openMovement(product, "EXIT", {
                       quantity: "1",
-                      note: "Saida com observacao"
+                      note: "Saída com observação"
                     })
                   }
                 >
-                  Saida
+                  Saída
                 </Button>
                 <Button
                   variant="secondary"
@@ -366,11 +366,11 @@ export function ProductsView() {
                   onClick={() =>
                     openMovement(product, "ADJUSTMENT", {
                       countedQuantity: String(product.currentQuantity),
-                      note: "Conferencia de estoque"
+                      note: "Conferência de estoque"
                     })
                   }
                 >
-                  Conferencia
+                  Conferência
                 </Button>
                 <Button
                   variant="ghost"
@@ -380,7 +380,7 @@ export function ProductsView() {
                     setNoteModalOpen(true);
                   }}
                 >
-                  Observacao
+                  Observação
                 </Button>
               </div>
 
@@ -444,7 +444,7 @@ export function ProductsView() {
             <Input
               type="number"
               step="0.001"
-              placeholder="Estoque minimo"
+              placeholder="Estoque mínimo"
               value={productForm.minimumStock}
               onChange={(event) =>
                 setProductForm((current) => ({ ...current, minimumStock: event.target.value }))
@@ -476,11 +476,11 @@ export function ProductsView() {
             }
           >
             <option value="1">Prioridade baixa</option>
-            <option value="2">Prioridade media</option>
+            <option value="2">Prioridade média</option>
             <option value="3">Prioridade alta</option>
           </Select>
           <Input
-            placeholder="Observacoes fixas"
+            placeholder="Observações fixas"
             value={productForm.observations}
             onChange={(event) =>
               setProductForm((current) => ({ ...current, observations: event.target.value }))
@@ -508,7 +508,7 @@ export function ProductsView() {
             }
           >
             <option value="ENTRY">Entrada</option>
-            <option value="EXIT">Saida</option>
+            <option value="EXIT">Saída</option>
             <option value="LOSS">Perda</option>
             <option value="ADJUSTMENT">Ajuste</option>
           </Select>
@@ -553,7 +553,7 @@ export function ProductsView() {
           )}
 
           <Input
-            placeholder="Observacao da movimentacao"
+            placeholder="Observação da movimentação"
             value={movementForm.note}
             onChange={(event) =>
               setMovementForm((current) => ({ ...current, note: event.target.value }))
@@ -567,28 +567,28 @@ export function ProductsView() {
 
       <Modal
         open={noteModalOpen}
-        title="Adicionar observacao fixa"
+        title="Adicionar observação fixa"
         onClose={() => setNoteModalOpen(false)}
       >
         <form className="stack" onSubmit={submitNote}>
           <div className="muted">{noteTarget?.name}</div>
           <Input
-            placeholder="Ex.: lote proximo do vencimento"
+            placeholder="Ex.: lote próximo do vencimento"
             value={noteContent}
             onChange={(event) => setNoteContent(event.target.value)}
           />
           <Button type="submit" fullWidth>
-            Salvar observacao
+            Salvar observação
           </Button>
         </form>
       </Modal>
 
       <ConfirmDialog
         open={!!quickActionTarget}
-        title="Confirmar baixa rapida"
+        title="Confirmar baixa rápida"
         description={
           quickActionTarget
-            ? `Registrar a saida de 1 unidade de ${quickActionTarget.name}?`
+            ? `Registrar a saída de 1 unidade de ${quickActionTarget.name}?`
             : ""
         }
         details={
@@ -596,7 +596,7 @@ export function ProductsView() {
             ? `Saldo atual: ${formatNumber(quickActionTarget.currentQuantity)} ${quickActionTarget.unit}`
             : ""
         }
-        confirmLabel="Confirmar saida"
+        confirmLabel="Confirmar saída"
         cancelLabel="Cancelar"
         tone="danger"
         onClose={() => setQuickActionTarget(null)}

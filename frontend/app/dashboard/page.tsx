@@ -9,11 +9,10 @@ export default function DashboardPage() {
     <RequireAuth>
       <AppShell
         title="Dashboard"
-        subtitle="Acompanhe alertas, ultima movimentacao, busca por produto e visao consolidada do estoque."
+        subtitle="Acompanhe alertas, última movimentação, busca por produto e visão consolidada do estoque."
       >
         <DashboardView />
       </AppShell>
     </RequireAuth>
   );
 }
-

@@ -23,7 +23,7 @@ export function requireAuth(request: Request, _response: Response, next: NextFun
   const token = request.cookies?.auth_token ?? bearerToken;
 
   if (!token) {
-    return next(createHttpError(401, "Sessao nao autenticada"));
+    return next(createHttpError(401, "Sessão não autenticada"));
   }
 
   try {
@@ -43,7 +43,7 @@ export function requireAuth(request: Request, _response: Response, next: NextFun
 export function requireRole(roles: Array<"ADMIN" | "MANAGER" | "OPERATOR">) {
   return (request: Request, _response: Response, next: NextFunction) => {
     if (!request.user) {
-      return next(createHttpError(401, "Sessao nao autenticada"));
+      return next(createHttpError(401, "Sessão não autenticada"));
     }
 
     if (!roles.includes(request.user.role)) {

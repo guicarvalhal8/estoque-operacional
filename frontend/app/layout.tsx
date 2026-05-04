@@ -16,7 +16,7 @@ const bodyFont = IBM_Plex_Sans({
 
 export const metadata: Metadata = {
   title: "Estoque Operacional",
-  description: "Controle profissional de estoque para operacao de alimentos",
+  description: "Controle profissional de estoque para operação de alimentos",
   manifest: "/manifest.webmanifest",
   icons: {
     icon: "/icon.svg",

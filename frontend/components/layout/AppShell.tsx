@@ -13,17 +13,17 @@ const navigationItems: Array<{ href: string; label: string; roles: Role[] }> = [
   { href: "/dashboard", label: "Dashboard", roles: ["ADMIN", "MANAGER", "OPERATOR"] },
   { href: "/products", label: "Estoque", roles: ["ADMIN", "MANAGER", "OPERATOR"] },
   { href: "/counts", label: "Contagem", roles: ["ADMIN", "MANAGER"] },
-  { href: "/movements", label: "Movimentacoes", roles: ["ADMIN", "MANAGER"] },
-  { href: "/reports", label: "Relatorios", roles: ["ADMIN", "MANAGER"] },
-  { href: "/replenishment", label: "Reposicao", roles: ["ADMIN", "MANAGER"] }
+  { href: "/movements", label: "Movimentações", roles: ["ADMIN", "MANAGER"] },
+  { href: "/reports", label: "Relatórios", roles: ["ADMIN", "MANAGER"] },
+  { href: "/replenishment", label: "Reposição", roles: ["ADMIN", "MANAGER"] }
 ];
 
 const mobileNavigationLabels: Record<string, string> = {
-  "/dashboard": "Inicio",
+  "/dashboard": "Início",
   "/products": "Estoque",
   "/counts": "Contagem",
-  "/movements": "Historico",
-  "/reports": "Relatorios",
+  "/movements": "Histórico",
+  "/reports": "Relatórios",
   "/replenishment": "Compras"
 };
 
@@ -115,10 +115,10 @@ export function AppShell({
                   fontSize: "1.45rem"
                 }}
               >
-                Controle diario da equipe
+                Controle diário da equipe
               </h1>
               <p className="muted" style={{ margin: "8px 0 0" }}>
-                Fluxo rapido para entrada, baixa, perdas e reposicao.
+                Fluxo rápido para entrada, baixa, perdas e reposição.
               </p>
             </div>
           </div>
@@ -155,7 +155,7 @@ export function AppShell({
                 border: "1px solid var(--line)"
               }}
             >
-              <div style={{ fontWeight: 700 }}>{user?.name ?? "Sem sessao"}</div>
+              <div style={{ fontWeight: 700 }}>{user?.name ?? "Sem sessão"}</div>
               <div className="muted">{user?.role ?? "-"}</div>
             </div>
             <InstallAppButton fullWidth />

@@ -25,7 +25,7 @@ export function statusLabel(status: string) {
     case "LOW":
       return "Baixo";
     case "CRITICAL":
-      return "Critico";
+      return "Crítico";
     case "ZEROED":
       return "Zerado";
     default:
@@ -38,7 +38,7 @@ export function movementLabel(type: string) {
     case "ENTRY":
       return "Entrada";
     case "EXIT":
-      return "Saida";
+      return "Saída";
     case "LOSS":
       return "Perda";
     case "ADJUSTMENT":
@@ -47,4 +47,3 @@ export function movementLabel(type: string) {
       return type;
   }
 }
-
